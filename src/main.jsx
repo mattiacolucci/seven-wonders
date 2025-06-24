@@ -7,6 +7,8 @@ import Stats from './Stats.jsx';
 import Games from './Games.jsx';
 import Game from './Game.jsx';
 import NewGame from './NewGame.jsx';
+import Players from './Players.jsx';
+import Player from './Player.jsx';
 
 createRoot(document.getElementById('root')).render(
   <Router>
@@ -16,6 +18,8 @@ createRoot(document.getElementById('root')).render(
       <Route path="/games" element={<Games/>} />
       <Route path="/games/:id" element={<Game/>} />
       <Route path="/newGame" element={<NewGame/>}/>
+      <Route path='/players' element={<Players/>}/>
+      <Route path='/players/:playerName' element={<Player/>}/>
     </Routes>
   </Router>
 )
