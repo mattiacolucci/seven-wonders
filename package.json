@@ -1,5 +1,6 @@
 {
   "name": "seven-wonders",
+  "homepage": "https://mattiacolucci.github.io/seven-wonders",
   "private": true,
   "version": "0.0.0",
   "type": "module",
