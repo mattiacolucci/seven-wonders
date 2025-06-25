@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="w-full text-white font-mono flex flex-col items-center overflow-hidden">
       {/* Header */}
-      <Header/>
+      <Header light/>
 
       {/* Main content */}
       <main className="h-[90vh] w-full flex flex-col bg-[url('./assets/bg.jpg')] bg-cover bg-center relative">
