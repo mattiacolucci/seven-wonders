@@ -59,7 +59,7 @@ const Game=()=>{
                             {game["player"].map((player, i) => (
                                 <th key={i} className={"w-30 h-12 border border-[rgba(255,255,255,0.7)] text-center "+((game.winner.toLowerCase()==player.toLowerCase())?"bg-[rgba(163,158,20,0.6)]":"bg-[rgba(255,255,255,0.1)]")}>
                                     <div className="w-full flex items-center justify-evenly">
-                                        <img src={"/src/assets/"+player.toLowerCase()+".png"} onerror="this.onerror=null; this.src='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'" className='w-8 h-8 rounded-full border-2 border-[rgba(255,255,255,0.4)]' />
+                                        <img src={"./assets/"+player.toLowerCase()+".png"} onerror="this.onerror=null; this.src='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'" className='w-8 h-8 rounded-full border-2 border-[rgba(255,255,255,0.4)]' />
                                         {player}
                                     </div>
                                 </th>
