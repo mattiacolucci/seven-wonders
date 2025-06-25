@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header"
 import Loading from "./components/Loading";
 import { Link } from "react-router-dom";
+import data from "./data/data.json";
 
 const Players=()=>{
     const [loading, setLoading] = useState(true);
@@ -54,7 +55,7 @@ const Players=()=>{
                         {players.map((player, index) => (
                             <Link to={"/players/"+player}>
                                 <div key={index} className="h-min py-3 w-max px-5 flex items-center gap-5 transition-all hover:scale-[1.1] bg-[rgba(255,255,255,0.2)] rounded-[15px] animate-pop">
-                                    <img src={"./assets/"+player.toLowerCase()+".png"} onerror="this.onerror=null; this.src='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'" title={player} className='w-8 h-8 rounded-full border-2 border-[rgba(255,255,255,0.4)]' />
+                                    <img src={data.siteAssetsUrl+"/"+player.toLowerCase()+".png?raw=True"} onError="this.onerror=null; this.src='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'" title={player} className='w-8 h-8 rounded-full border-2 border-[rgba(255,255,255,0.4)]' />
                                     <div className='text-xl'>{player}</div>
                                 </div>
                             </Link>

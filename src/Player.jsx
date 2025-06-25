@@ -108,7 +108,7 @@ const Player=()=>{
                     <div className="absolute w-[50%] h-[150vh] bg-[rgba(0,0,0,0.2)] clip-player"></div>
 
                     <div className="h-full w-max flex flex-col gap-5 overflow-hidden">
-                        <img src={"./assets/"+playerName.toLowerCase()+".png"} onerror="this.onerror=null; this.src='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'" className='w-20 h-20 rounded-full border-2 border-[rgba(255,255,255,0.4)] mt-15 z-[2]' />
+                        <img src={dataJson.siteAssetsUrl+"/"+playerName.toLowerCase()+".png?raw=True"} onError="this.onerror=null; this.src='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'" className='w-20 h-20 rounded-full border-2 border-[rgba(255,255,255,0.4)] mt-15 z-[2]' />
                         <div className="text-5xl anton-font z-[2] h-min w-min py-3 border-b-2 border-b-white pr-10 animate-fade-down">{playerName.at(0).toUpperCase()+playerName.slice(1)}</div>
                         
                         <div className="flex items-center gap-8 z-[2] mt-10">
