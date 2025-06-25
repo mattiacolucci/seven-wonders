@@ -4,7 +4,7 @@ import './index.css';
 
 function App() {
   return (
-    <div className="w-full text-white font-mono flex flex-col items-center overflow-hidden">
+    <div className="w-full text-white font-mono flex flex-col items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-zinc-800">
       {/* Header */}
       <Header light/>
 
