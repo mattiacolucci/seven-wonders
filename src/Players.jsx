@@ -55,7 +55,7 @@ const Players=()=>{
                         {players.map((player, index) => (
                             <Link to={"/players/"+player}>
                                 <div key={index} className="h-min py-3 w-max px-5 flex items-center gap-5 transition-all hover:scale-[1.1] bg-[rgba(255,255,255,0.2)] rounded-[15px] animate-pop">
-                                    <img src={data.siteAssetsUrl+"/"+player.toLowerCase()+".png?raw=True"} onError={(e)=>{e.target.onerror=null; e.target.src=dataJson.siteAssetsUrl+"/user.png?raw=True"}} title={player} className='w-8 h-8 rounded-full border-2 border-[rgba(255,255,255,0.4)]' />
+                                    <img src={data.siteAssetsUrl+"/"+player.toLowerCase()+".png?raw=True"} onError={(e)=>{e.target.onerror=null; e.target.src=data.siteAssetsUrl+"/user.png?raw=True"}} title={player} className='w-8 h-8 rounded-full border-2 border-[rgba(255,255,255,0.4)]' />
                                     <div className='text-xl'>{player.at(0).toUpperCase()+player.slice(1)}</div>
                                 </div>
                             </Link>
