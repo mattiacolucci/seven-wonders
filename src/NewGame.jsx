@@ -111,7 +111,7 @@ const NewGame=()=>{
     return(
         <div className="relative w-full h-[100vh] text-white font-mono flex flex-col items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-zinc-800">
             {/* Header */}
-            <Header light highlight="stats"/>
+            <Header light/>
 
             <div className="h-[90vh] w-full flex flex-col items-center justify-center gap-5">
                 <>
