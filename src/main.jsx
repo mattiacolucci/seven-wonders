@@ -10,6 +10,7 @@ import NewGame from './NewGame.jsx';
 import Players from './Players.jsx';
 import Player from './Player.jsx';
 import PrivateRoute from './PrivateRoute.jsx';
+import Leaderboard from './Leaderboard.jsx';
 
 createRoot(document.getElementById('root')).render(
   <HashRouter>
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')).render(
       <Route path="/newGame" element={<PrivateRoute><NewGame/></PrivateRoute>}/>
       <Route path='/players' element={<Players/>}/>
       <Route path='/players/:playerName' element={<Player/>}/>
+      <Route path='/leaderboard' element={<Leaderboard/>}/>
     </Routes>
   </HashRouter>
 )
