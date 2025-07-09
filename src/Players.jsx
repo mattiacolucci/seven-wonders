@@ -51,7 +51,7 @@ const Players=()=>{
                 <div className="h-[90vh] w-full flex flex-col items-center justify-center gap-5">
                     <div className="w-30 text-center border-b-2 border-b-white py-2 text-2xl anton-font animate-fade-down">PLAYERS</div>
                     
-                    <div className="h-[70vh] w-[90vw] flex gap-5 overflow-y-auto overflow-x- p-5">
+                    <div className="h-[70vh] w-[90vw] flex flex-wrap content-start gap-5 overflow-y-auto overflow-x- p-5">
                         {players.map((player, index) => (
                             <Link to={"/players/"+player}>
                                 <div key={index} className="h-min py-3 w-max px-5 flex items-center gap-5 transition-all hover:scale-[1.1] bg-[rgba(255,255,255,0.2)] rounded-[15px] animate-pop">

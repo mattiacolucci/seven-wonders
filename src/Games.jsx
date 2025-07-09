@@ -8,6 +8,10 @@ const Games=()=>{
     const [games, setGames] = useState({});
     const [loading, setLoading] = useState(true);
 
+    function custom_sort(a, b) {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+    }
+
     useEffect(() => {
         const getData = async () => {
             try {
@@ -17,7 +21,7 @@ const Games=()=>{
                         'Content-Type': 'application/json'
                     }
                 });
-                const data = await response.json();
+                var data = await response.json();
                 if (response.status === 200) {
                     setGames(data);
                     setLoading(false);
@@ -46,7 +50,7 @@ const Games=()=>{
                 <div className='h-[70vh] w-[90vw] flex flex-col items-center gap-5 overflow-y-auto overflow-x-hidden'>
                     {games["games"].map((game, index) => (
                             <div className="w-[70%] flex flex-col justify-center items-center transition-all hover:scale-[1.05] animate-pop">
-                                <Link to={"/games/"+index} className='w-full h-[10vh] bg-[rgba(255,255,255,0.25)] rounded-[15px]'>
+                                <Link to={"/games/"+game["id"]} className='w-full h-[10vh] bg-[rgba(255,255,255,0.25)] rounded-[15px]'>
                                     <div className='h-full w-full flex items-center justify-evenly'>
                                         <div className="flex items-center gap-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

@@ -8,58 +8,19 @@ import dataJson from "./data/data.json";
 const Player=()=>{
     const icons = dataJson.icons;
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState({
-        gamesPlayed: 0,
-        gamesWon: 0,
-        winRate: 0,
-        avgPosition: 0,
-        positions:[
-            {date:1,position:-1},
-            {date:2,position:-2},
-            {date:3,position:-1},
-            {date:4,position:-5},
-            {date:5,position:-2},
-            {date:6,position:-3}
-        ],
-        averages:{
-            "states": 10,
-            "coins": 2,
-            "wars": 10,
-            "blue": 8,
-            "yellow": 10,
-            "green": 10,
-            "violet": 5,
-        },
-        maximums:{
-            "states": 10,
-            "coins": 2,
-            "wars": 10,
-            "blue": 8,
-            "yellow": 10,
-            "green": 10,
-            "violet": 5,
-        },
-        minimums:{
-            "states": 10,
-            "coins": 2,
-            "wars": 10,
-            "blue": 8,
-            "yellow": 10,
-            "green": 10,
-            "violet": 5,
-        }
-
-    });
+    const [data, setData] = useState({});
 
     const TooltipChartCustom=(props)=>{
         return(
             <div className="text-[10px] font-light bg-[rgb(46,60,162)] p-1 px-[6px] rounded-sm" >
-                {props.payload.map(v => 
-                    <p style={{color:"white",opacity:0.8}}>
-                        <span className="font-navbar font-semibold">{v.dataKey+":"}</span>
-                        <span className="opacity-90">{" "+(-v.value)}</span>
-                    </p>)
-                }
+                <p style={{color:"white",opacity:0.8}}>
+                    <span className="font-navbar font-semibold">{"Position:"}</span>
+                    <span className="opacity-90">{" "+(-props.payload[0]?.payload.position)}</span>
+                </p>
+                <p style={{color:"white",opacity:0.8}}>
+                    <span className="font-navbar font-semibold">{"Date:"}</span>
+                    <span className="opacity-90">{" "+props.payload[0]?.payload.gameDate}</span>
+                </p>
             </div>
         )
     }
@@ -81,8 +42,10 @@ const Player=()=>{
                     data.avgPosition = Math.round(data.positions.reduce((sum, num) => sum + num)/data.positions.length);
                     data.positions = data.positions.map((pos, index) => ({
                         date: index + 1,
-                        position: -pos // Negate the position for display purposes
+                        position: -pos, // Negate the position for display purposes
+                        gameDate: data.dates[index]
                     }));
+                    console.log(data);
                     setData(data);
                     setLoading(false);
                 }else{
@@ -148,7 +111,7 @@ const Player=()=>{
 
                         <div className="text-lg">Last Positions</div>
 
-                        <LineChart width={300} height={160} data={data.positions.slice(-5)} margin={{bottom:10,right:10}} className="outline-none">
+                        <LineChart width={300} height={160} data={data.positions.slice(0,10).reverse()} margin={{bottom:10,right:10}} className="outline-none">
                             <CartesianGrid strokeDasharray="2" strokeOpacity={0.9}/>
                             <XAxis tick={false} minTickGap={10} dataKey="date" label={{ value: '', angle: 0, position: 'insideBottomRight', offset:7, fontSize:"12px"}}/>
                             <YAxis tick={false} minTickGap={8} domain={[0, 'dataMax + 0.5']} label={{ value: 'Position', angle: -90, fontSize:"14px", position:'insideBottom', offset:45, fill:"white"}}/>
@@ -158,7 +121,7 @@ const Player=()=>{
                         </LineChart>
                     </div>
 
-
+                    {/* STATS */}
                     <div className="h-full w-max flex flex-col gap-5 overflow-hidden z-[2] animate-fade-down">
                         <div className="w-max p-5 flex flex-col items-center gap-3 glass mt-20">
                             <div className="px-3 flex items-center justify-center gap-4">
@@ -192,6 +155,23 @@ const Player=()=>{
                             <div className="w-10 text-center text-2xl anton-font opacity-90">{data.maximums["total"]}</div>
                             <div className="text-lg">|</div>
                             <div className="w-10 text-center text-2xl anton-font opacity-90">{data.minimums["total"]}</div>
+                        </div>
+                    </div>
+
+                    {/* RECORDS */}
+                    <div className="h-full w-max flex flex-col gap-5 overflow-hidden z-[2] animate-fade-down">
+                        <div className="w-max p-5 flex flex-col items-center gap-3 glass mt-20">
+                            <div className="text-center text-2xl opacity-90 anton-font">Records</div>
+                            {Object.keys(data.records).map(rec=>{
+                                if(rec)
+                                if(data.records[rec].holds){
+                                    return <div className="w-full px-3 py-2 flex items-center gap-4 bg-[rgba(255,255,255,0.2)]">
+                                        <div className="text-center text-lg opacity-90 flex gap-2">{data.records[rec].name}<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="#ffffff" d="M216 96a88 88 0 1 0-144 67.83V240a8 8 0 0 0 11.58 7.16L128 225l44.43 22.21a8.1 8.1 0 0 0 3.57.79a8 8 0 0 0 8-8v-76.17A87.85 87.85 0 0 0 216 96M56 96a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72m112 131.06l-36.43-18.21a8 8 0 0 0-7.16 0L88 227.06v-52.69a87.89 87.89 0 0 0 80 0ZM128 152a56 56 0 1 0-56-56a56.06 56.06 0 0 0 56 56m0-96a40 40 0 1 1-40 40a40 40 0 0 1 40-40"/></svg>
+                                        </div>
+                                        <div className="text-center text-2xl opacity-90">({data.records[rec].recordValue})</div>
+                                    </div>
+                                }
+                            })}
                         </div>
                     </div>
 
