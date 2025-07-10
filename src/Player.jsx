@@ -123,7 +123,7 @@ const Player=()=>{
 
                     {/* STATS */}
                     <div className="h-full w-max flex flex-col gap-5 overflow-hidden z-[2] animate-fade-down">
-                        <div className="w-max p-5 flex flex-col items-center gap-3 glass mt-20">
+                        <div className="w-max p-5 flex flex-col items-center gap-3 glass mt-12">
                             <div className="px-3 flex items-center justify-center gap-4">
                                 <div className="w-10"></div>
                                 <div className="text-xl">-</div>
@@ -132,6 +132,8 @@ const Player=()=>{
                                 <div className="w-10 text-center text-2xl opacity-90">Max</div>
                                 <div className="text-lg">|</div>
                                 <div className="w-10 text-center text-2xl opacity-90">Min</div>
+                                <div className="text-lg">|</div>
+                                <div className="w-10 text-center text-2xl opacity-90" title="Cumulative">+</div>
                             </div>
                             {Object.keys(data.averages).slice(0,-1).map((key, index) => (
                                 <div key={index} className={"px-3 flex items-center justify-center gap-4 "+((data.averages[key]==Math.max(...Object.values(data.averages).slice(0,-1)))?"bg-[rgba(255,255,255,0.2)]":"")}>
@@ -142,6 +144,8 @@ const Player=()=>{
                                     <div className="w-10 text-center text-2xl anton-font opacity-90">{data.maximums[key]}</div>
                                     <div className="text-lg">|</div>
                                     <div className="w-10 text-center text-2xl anton-font opacity-90">{data.minimums[key]}</div>
+                                    <div className="text-lg">|</div>
+                                    <div className="w-10 text-center text-2xl anton-font opacity-90">{data.cumulatives[key]}</div>
                                 </div>
                             ))}
 
@@ -155,12 +159,14 @@ const Player=()=>{
                             <div className="w-10 text-center text-2xl anton-font opacity-90">{data.maximums["total"]}</div>
                             <div className="text-lg">|</div>
                             <div className="w-10 text-center text-2xl anton-font opacity-90">{data.minimums["total"]}</div>
+                            <div className="text-lg">|</div>
+                            <div className="w-10 text-center text-2xl anton-font opacity-90">{data.cumulatives["total"]}</div>
                         </div>
                     </div>
 
                     {/* RECORDS */}
                     <div className="h-full w-max flex flex-col gap-5 overflow-hidden z-[2] animate-fade-down">
-                        <div className="w-max p-5 flex flex-col items-center gap-3 glass mt-20">
+                        <div className="w-max p-5 flex flex-col items-center gap-3 glass mt-12">
                             <div className="text-center text-2xl opacity-90 anton-font">Records</div>
                             {Object.keys(data.records).map(rec=>{
                                 if(rec)
@@ -172,6 +178,20 @@ const Player=()=>{
                                     </div>
                                 }
                             })}
+                        </div>
+
+                        <div className="w-max p-3 flex flex-col gap-2 glass">
+                            <div className="text-lg ml-2">Best Game</div>
+                            <div className="flex items-center gap-3">
+                                {Object.keys(data.bestGame).slice(0,-1).map((k, index) => (<>
+                                    {(index==Object.keys(data.bestGame).slice(0,-1).length-1) && <div className="h-full w-0.5 bg-white"></div>}
+                                    <div className="flex flex-col items-center justify-center gap-2">
+                                        <div className={"w-10 h-10 text-center "+((index==0 || index==4)?"text-yellow-300 text-3xl":"text-xl flex items-center justify-center")}>{icons[index][0]}</div>
+                                        <div className="w-8 h-0.5 bg-white"></div>
+                                        <div className="w-10 text-center text-2xl flex items-center justify-center anton-font opacity-90" key={"bestgame"+index}>{data.bestGame[k]}</div>
+                                    </div></>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
