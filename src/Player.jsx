@@ -181,7 +181,7 @@ const Player=()=>{
                         </div>
 
                         <div className="w-max p-3 flex flex-col gap-2 glass">
-                            <div className="text-lg ml-2">Best Game</div>
+                            <div className="text-lg ml-2">{"Best Game ("+data.bestGame.date+")"}</div>
                             <div className="flex items-center gap-3">
                                 {Object.keys(data.bestGame).slice(0,-1).map((k, index) => (<>
                                     {(index==Object.keys(data.bestGame).slice(0,-1).length-1) && <div className="h-full w-0.5 bg-white"></div>}
